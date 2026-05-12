@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import apiAdapter from "@/cmsAdapter";
+import cmsAdapter from "@/cmsAdapter";
 
-export async function GET(request: Request, { params }: { params: Promise<{ id: Number }> }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: number }> }) {
   try {
     const { id: movieID } = await params;
-    const movie = await apiAdapter.getMovie(movieID);
+    const movie = await cmsAdapter.getMovie(movieID);
     return NextResponse.json(movie, { status: 200 });
   }
   catch(error) {
