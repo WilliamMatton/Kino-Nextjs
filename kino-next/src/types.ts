@@ -1,0 +1,1 @@
+// Lägg alla TypeScript typer i den här filen
