@@ -1,3 +1,5 @@
+import { review } from "./types";
+
 const API = 'https://plankton-app-xhkom.ondigitalocean.app/api';
 
 async function getReviews(movieID: number, page: number) {
@@ -6,8 +8,29 @@ async function getReviews(movieID: number, page: number) {
   return reviewBatch;
 }
 
+async function postReview(review: review) {
+  const res = await fetch(`${API}/reviews`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      data: {
+        author: review.author,
+        rating: review.rating,
+        comment: review.comment,
+        movie: review.movieID
+      }
+    })
+  });
+
+  const payload = await res.json();
+  return payload;
+}
+
 const cmsAdapter = {
-  getReviews
+  getReviews,
+  postReview
 };
 
 export default cmsAdapter;

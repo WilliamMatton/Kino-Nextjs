@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import cmsAdapter from "@/cmsAdapter";
 
-export async function GET(request: Request, { params }: { params: Promise<{ id: number, page: number }> }) {
+export async function POST(req: NextRequest) {
   try {
-    const { id: movieID, page: currentPage } = await params;
-    const reviews = await cmsAdapter.getReviews(movieID, currentPage);
-    return NextResponse.json(reviews, { status: 200 });
+    const review = await req.json();
+    const res = await cmsAdapter.postReview(review);
+    return NextResponse.json(res, { status: 201 });
   }
   catch(error) {
     const message = error instanceof Error ? error.message : 'Unknown error';
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: message}, { status: 500 });
   }
 }
