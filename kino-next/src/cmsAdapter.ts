@@ -1,0 +1,1 @@
+// Lägg alla funktioner som fetchar till Richards CMS här
