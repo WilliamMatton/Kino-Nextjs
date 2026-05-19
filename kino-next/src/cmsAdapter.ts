@@ -1,3 +1,5 @@
+// Lägg alla funktioner som fetchar till Richards CMS här
+
 import { review } from "./types";
 
 const API = 'https://plankton-app-xhkom.ondigitalocean.app/api';
