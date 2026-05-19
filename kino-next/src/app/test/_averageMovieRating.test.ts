@@ -18,7 +18,7 @@ describe('getReviewRating()', () => {
         }),
       } as any);
 
-    const result = await getReviewRating("1", 1);
+    const result = await getReviewRating("1");
 
     expect(result).toBe(3.2);
   });
@@ -32,7 +32,7 @@ describe('getReviewRating()', () => {
         }),
       } as any);
 
-    const result = await getReviewRating("1", 1);
+    const result = await getReviewRating("1");
 
     expect(result).toBeNull();
   });
@@ -51,7 +51,7 @@ describe('getReviewRating()', () => {
         }),
       } as any);
 
-    const result = await getReviewRating("1", 1);
+    const result = await getReviewRating("1");
 
     expect(result).toBeNull();
   });

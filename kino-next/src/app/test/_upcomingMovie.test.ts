@@ -1,7 +1,7 @@
 import { describe, expect, it, jest } from '@jest/globals';
-import { getFirstFiveScreenings } from "../api/reviews/route";
+import { fetchFirstFiveScreenings } from "../api/screenings/route";
 
-describe("getFirstFiveScreenings", () => {
+describe("fetchFirstFiveScreenings", () => {
   it("should fetch screenings for next five days", async () => {
 
         jest.useFakeTimers();
@@ -19,7 +19,7 @@ globalThis.fetch = jest.fn(async () => ({
   }),
 })) as any;
 
-const result = await getFirstFiveScreenings("movie-id");
+const result = await fetchFirstFiveScreenings("movie-id");
 
 expect(result[0].attributes.start_time).toBe('2026-05-11T17:00:00.000Z');
 expect(result[1].attributes.start_time).toBe('2026-05-11T21:00:00.000Z');
