@@ -6,7 +6,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     const { id: movieID } = await params;
     const url = new URL(request.url);
     const currentPage = url.searchParams.get('page') || '1';
-    const reviews = await cmsAdapter.getReviews(movieID, Number(currentPage));
+    const reviews = await cmsAdapter.fetchReviews(movieID, Number(currentPage));
     return NextResponse.json(reviews, { status: 200 });
   }
   catch(error) {

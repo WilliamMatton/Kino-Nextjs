@@ -27,7 +27,7 @@ describe('getReviews()', () => {
       } as any)
     );
     
-    const result = await cmsAdapter.getReviews(8, 1);
+    const result = await cmsAdapter.fetchReviews(8, 1);
     
     expect(globalThis.fetch).toHaveBeenCalledWith(
       expect.stringContaining('filters[movie]=8')
@@ -44,7 +44,7 @@ describe('getReviews()', () => {
       } as any)
     );
 
-    await cmsAdapter.getReviews(8, 2);
+    await cmsAdapter.fetchReviews(8, 2);
 
     expect(globalThis.fetch).toHaveBeenLastCalledWith(
       expect.stringContaining('pagination[page]=2')
@@ -63,10 +63,10 @@ describe('getReviews()', () => {
       } as any)
     );
 
-    await cmsAdapter.getReviews(8, 1);
+    await cmsAdapter.fetchReviews(8, 1);
     const firstCall = (globalThis.fetch as jest.Mock).mock.calls[0][0];
 
-    await cmsAdapter.getReviews(8, 3);
+    await cmsAdapter.fetchReviews(8, 3);
     const secondCall = (globalThis.fetch as jest.Mock).mock.calls[1][0];
 
     expect(firstCall).toContain('pagination[page]=1');
