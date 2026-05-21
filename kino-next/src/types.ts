@@ -1,8 +1,13 @@
 // Lägg alla TypeScript typer i den här filen
 
 export type review = {
-  author: string;
-  rating: number;
-  comment: string;
-  movieID: number;
+  id: number;
+  attributes: {
+    createdAt: Date;
+    comment: string;
+    rating: number;
+    author: string;
+    verified: boolean;
+    updatedAt: Date;
+  };
 }

@@ -1,7 +1,5 @@
 // Lägg alla funktioner som fetchar till Richards CMS här
 
-import { review } from "./types";
-
 const API = 'https://plankton-app-xhkom.ondigitalocean.app/api';
 
 async function getReviews(movieID: number, page: number) {
@@ -10,7 +8,7 @@ async function getReviews(movieID: number, page: number) {
   return reviewBatch;
 }
 
-async function postReview(review: review) {
+async function postReview(review: { data: { author: string; rating: number; comment: string; movie: number } }) {
   const res = await fetch(`${API}/reviews`, {
     method: 'POST',
     headers: {
@@ -18,10 +16,10 @@ async function postReview(review: review) {
     },
     body: JSON.stringify({
       data: {
-        author: review.author,
-        rating: review.rating,
-        comment: review.comment,
-        movie: review.movieID
+        author: review.data.author,
+        rating: review.data.rating,
+        comment: review.data.comment,
+        movie: review.data.movie
       }
     })
   });
