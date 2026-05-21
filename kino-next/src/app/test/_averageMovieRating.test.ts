@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
-import { getReviewRating } from "../api/reviews/route";
+import { fetchReviewRating } from "../api/reviews/route";
 
-describe('getReviewRating()', () => {
+describe('fetchReviewRating()', () => {
 
   it('returns average rating when reviews exist', async () => {
 
@@ -18,7 +18,7 @@ describe('getReviewRating()', () => {
         }),
       } as any);
 
-    const result = await getReviewRating("1");
+    const result = await fetchReviewRating("1");
 
     expect(result).toBe(3.2);
   });
@@ -32,7 +32,7 @@ describe('getReviewRating()', () => {
         }),
       } as any);
 
-    const result = await getReviewRating("1");
+    const result = await fetchReviewRating("1");
 
     expect(result).toBeNull();
   });
@@ -51,7 +51,7 @@ describe('getReviewRating()', () => {
         }),
       } as any);
 
-    const result = await getReviewRating("1");
+    const result = await fetchReviewRating("1");
 
     expect(result).toBeNull();
   });

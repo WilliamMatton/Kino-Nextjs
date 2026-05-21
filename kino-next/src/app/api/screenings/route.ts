@@ -4,7 +4,13 @@ export async function fetchFirstFiveScreenings(id: string) {
   const response = await fetch(`${SCREENINGS_API}?movieId=${id}`);
 
   const { data } = await response.json();
-  return data.slice(0, 5);
+
+  const today = new Date();
+  const upcomingScreenings = data.filter((screening: any) => {
+    const screeningDate = new Date(screening.attributes.start_time);
+    return screeningDate >= today;
+  });
+  return upcomingScreenings.slice(0, 5);
 }
 
 export async function GET(request: Request) {

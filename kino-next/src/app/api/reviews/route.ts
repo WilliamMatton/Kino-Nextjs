@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 const REVIEWS_API = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
 
-export async function getReviewRating(id: string) {
-  const response = await fetch(`${REVIEWS_API}?movieId=${id}}`);
+export async function fetchReviewRating(id: string) {
+  const response = await fetch(`${REVIEWS_API}?movieId=${id}`);
   const { data } = await response.json();
   if (data.length < 5) {
     return null;

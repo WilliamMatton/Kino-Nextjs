@@ -1,18 +1,21 @@
 import "@/styles/movieIntro.scss"
-import { getFirstFiveScreenings, getReviewRating } from "../api/reviews/route";
+import { fetchReviewRating } from "../api/reviews/route";
+import { fetchFirstFiveScreenings } from "../api/screenings/route";
 
 export default async function MovieIntro() {
-  const screenings = await getFirstFiveScreenings("movie-id");
+  const screenings = await fetchFirstFiveScreenings("movieId");
   return(
     <><h1>Detaljsida</h1><div>
-      <p>Movie rating: {getReviewRating("movie-id", 5)}</p>
+      <p>Movie rating: {await fetchReviewRating("movieId")}</p>
     </div>
     <div>
       <p>Kommande visningar:</p>
-      {
+      { screenings.length === 0 ? (
+        <p>Inga kommande visningar</p>
+      ) :
         screenings.map((screening: any) => (
           <p key={screening.id}>
-            {screening.attribute.start_time}
+            {screening.attributes.start_time}
           </p>
         ))
       }
