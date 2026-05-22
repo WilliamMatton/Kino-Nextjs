@@ -1,16 +1,13 @@
 // Lägg alla TypeScript typer i den här filen
 
-export type movie = { 
+export type review = {
   id: number;
   attributes: {
-    title: string;
-    imdb: string;
-    intro: string;
-    image: {
-      url: string;
-    }
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
+    createdAt: Date;
+    comment: string;
+    rating: number;
+    author: string;
+    verified: boolean;
+    updatedAt: Date;
   };
 }
