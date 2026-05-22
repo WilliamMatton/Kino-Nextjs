@@ -1,0 +1,2 @@
+/* page for all movies */
+
