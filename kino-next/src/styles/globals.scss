@@ -1,0 +1,19 @@
+:root {
+  --bg-dark: #231f20;
+  --white: #ffffff;
+  --text-muted: #d3d2d6;
+  --text-strong: #f8f7f5;
+  --pill-bg: rgba(255, 255, 255, 0.04);
+  --pill-active: #554c48;
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --white-hover: rgba(255, 255, 255, 0.1);
+  --shadow-soft: 0 12px 28px rgba(0, 0, 0, 0.35);
+  --blur-bg: rgba(35, 31, 32, 0.9);
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: var(--bg-dark);
+  color: var(--white);
+}
