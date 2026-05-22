@@ -2,6 +2,12 @@
 
 const API = 'https://plankton-app-xhkom.ondigitalocean.app/api';
 
+async function fetchMovie(movieID : number) {
+  const res = await fetch(API + '/movies/' + movieID);
+  const payload = await res.json();
+  return payload.data;
+}
+
 async function fetchReviews(movieID: number, page: number) {
   const res = await fetch(`${API}/reviews?filters[movie]=${movieID}&pagination[pageSize]=5&pagination[page]=${page}&sort=createdAt:desc`);
   const reviewBatch = await res.json();
@@ -29,6 +35,7 @@ async function postReview(review: { data: { author: string; rating: number; comm
 }
 
 const cmsAdapter = {
+  fetchMovie,
   fetchReviews,
   postReview
 };

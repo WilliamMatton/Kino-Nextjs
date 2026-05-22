@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach, jest } from '@jest/globals';
 import cmsAdapter from '@/cmsAdapter';
 
-describe('getReviews()', () => {
+describe('fetchReviews()', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
