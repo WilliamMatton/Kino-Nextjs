@@ -4,7 +4,7 @@ import cmsAdapter from "@/cmsAdapter";
 export async function GET(request: Request, { params }: { params: Promise<{ id: number }> }) {
   try {
     const { id: movieID } = await params;
-    const movie = await cmsAdapter.getMovie(movieID);
+    const movie = await cmsAdapter.fetchMovie(movieID);
     return NextResponse.json(movie, { status: 200 });
   }
   catch(error) {
