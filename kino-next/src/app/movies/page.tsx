@@ -8,6 +8,11 @@ export default function MoviesPage() {
   return (
       <main>
             <h1>All movies shown</h1>
+
+        <div id="cardsContainer"></div>
+        
       </main>
   );
 }
+
+
