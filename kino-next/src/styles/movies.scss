@@ -1,7 +1,24 @@
 /* css for movies page */
 
+body {
+  min-height: 100vh;
+  font-family: Inter;
+  font-size: 16px;
+  background-color: #231f20;
+  background-color: #231F20;
+  color: #ffffff;
+}
+
 h1 {
   color: red;
   font-size: 7rem;
   text-align: center;
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  color: orange;
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: 0.04em;
 }
