@@ -2,7 +2,7 @@
 
 /* depending on what components to use   v */
 /* import Navbar from "@/components/Navbar"; */
-import "@/styles/moviespage.scss"
+import "@/styles/movies.scss"
 
 export default function MoviesPage() {
   return (
@@ -10,7 +10,7 @@ export default function MoviesPage() {
             <h1>All movies shown</h1>
 
         <div id="cardsContainer"></div>
-        
+
       </main>
   );
 }
