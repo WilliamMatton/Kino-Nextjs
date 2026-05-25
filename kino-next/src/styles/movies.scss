@@ -6,6 +6,7 @@ body {
   font-size: 16px;
   background-color: #231f20;
   color: #ffffff;
+  margin: 0 auto;
 }
 
 h1 {
@@ -20,4 +21,15 @@ h2 {
   font-size: 3rem;
   text-align: center;
   letter-spacing: 0.04em;
+}
+
+.logoGlow {
+  width: min(400px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logoImg {
+  width: 140px;
+  height: auto;
 }
