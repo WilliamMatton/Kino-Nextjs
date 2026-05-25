@@ -1,8 +1,9 @@
-import Image from "next/image";
-import "../styles/index.scss";
+
+import "../styles/upcomingscreen.scss";
+import Upcomingfilms from "@/app/Upcomingfilms";
 
 export default function Home() {
   return (
-    <h1>Hello World</h1>
-  );
+      <Upcomingfilms/>
+  )
 }
