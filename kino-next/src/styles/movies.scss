@@ -1,0 +1,35 @@
+/* css for movies page */
+
+body {
+  min-height: 100vh;
+  font-family: Inter;
+  font-size: 16px;
+  background-color: #231f20;
+  color: #ffffff;
+  margin: 0 auto;
+}
+
+h1 {
+  color: red;
+  font-size: 7rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+h2 {
+  color: #3d3738;
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.logoGlow {
+  width: min(400px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logoImg {
+  width: 140px;
+  height: auto;
+}
