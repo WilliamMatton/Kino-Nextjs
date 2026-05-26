@@ -1,0 +1,114 @@
+$bg: #181414;
+$muted: #bfb8b8;
+$accent: #ffffff;
+
+.wrapper {
+  min-height: 100vh;
+  background: $bg;
+  color: $muted;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.logo {
+  color: $accent;
+  font-weight: 700;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.nav {
+  display: flex;
+  gap: 22px;
+}
+
+.nav a {
+  color: $muted;
+  padding: 10px 18px;
+  border-radius: 12px;
+}
+
+.nav .active {
+  background: rgba(255,255,255,0.03);
+  color: $accent;
+}
+
+.book {
+  background: $accent;
+  color: $bg;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.hero {
+  padding: 80px 64px;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+.hero h1 {
+  color: $accent;
+  font-size: 28px;
+  margin: 0;
+}
+
+.upcoming {
+  padding: 48px 64px;
+}
+
+.footer {
+  margin-top: auto;
+  padding: 48px 64px 24px;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+.footerCols {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.col h3 {
+  color: $accent;
+  margin-bottom: 12px;
+}
+
+.col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.socials {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.social {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 8px;
+  color: $muted;
+}
+
+.copy {
+  text-align: center;
+  margin-top: 28px;
+  color: rgba(255,255,255,0.5);
+}
