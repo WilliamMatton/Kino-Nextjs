@@ -2,6 +2,52 @@
 
 const API = 'https://plankton-app-xhkom.ondigitalocean.app/api';
 
+export async function fetchFirstFiveScreenings(id: string) {
+  const now = new Date().toISOString();
+  const params = new URLSearchParams({
+    'filters[movie]': id,
+    'filters[start_time][$gte]': now,
+    sort: 'start_time:asc',
+    'pagination[pageSize]': '5',
+    populate: 'movie',
+  });
+
+  const response = await fetch(`${API}/screenings?${params.toString()}`);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch screenings');
+  }
+
+  const { data } = await response.json();
+  return data;
+}
+
+export async function fetchRating(id: string) {
+  const params = new URLSearchParams({
+    'filters[movie]': id,
+    'pagination[pageSize]': '100',
+  });
+
+  const response = await fetch(`${API}/reviews?${params.toString()}`);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch ratings');
+  }
+
+  const { data } = await response.json();
+
+  if (!data.length) {
+    return null;
+  }
+
+  const sum = data.reduce(
+    (total: number, review: any) => total + review.attributes.rating,
+    0
+  );
+
+  return sum / data.length;
+}
+
 async function fetchMovie(movieID : number) {
   const res = await fetch(API + '/movies/' + movieID);
   const payload = await res.json();
@@ -37,7 +83,9 @@ async function postReview(review: { data: { author: string; rating: number; comm
 const cmsAdapter = {
   fetchMovie,
   fetchReviews,
-  postReview
+  postReview,
+  fetchFirstFiveScreenings,
+  fetchRating
 };
 
 export default cmsAdapter;
