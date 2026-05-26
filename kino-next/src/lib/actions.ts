@@ -1,6 +1,6 @@
-"use server"
+"use server";
 
-import { revalidatePath } from "next/cache"
+import { revalidatePath } from "next/cache";
 
 export async function createReview(movieID: number, formData: FormData) {
   const rawFormData = {
@@ -10,7 +10,7 @@ export async function createReview(movieID: number, formData: FormData) {
   };
 
   try {
-    await fetch('http://localhost:3000/api/reviews'), {
+    await fetch('http://localhost:3000/api/reviews', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,8 +23,8 @@ export async function createReview(movieID: number, formData: FormData) {
           movie: movieID
         }
       }),
-    }
-  } catch(error) {
+    });
+  } catch (error) {
     console.error(error);
     return {
       message: 'Server Error: Failed to Create Review.'
