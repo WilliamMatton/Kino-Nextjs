@@ -14,16 +14,19 @@ $accent: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 48px;
+  padding: 20px 48px;
   border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
 .logo {
-  color: $accent;
-  font-weight: 700;
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  padding: 10px 14px;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+  height: auto;
+  max-height: 140px;
 }
 
 .nav {

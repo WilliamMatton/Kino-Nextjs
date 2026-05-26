@@ -6,7 +6,9 @@ export default function Home() {
   return (
     <main className={styles.wrapper}>
       <header className={styles.header}>
-        <div className={styles.logo}>PROXIMA B</div>
+        <div className={styles.logo}>
+          <Image src="/images/Proxima-B.gif" alt="Proxima B" width={140} height={80} />
+        </div>
         <nav className={styles.nav}>
           <a className={styles.active}>Visningar</a>
           <a>Filmer</a>
