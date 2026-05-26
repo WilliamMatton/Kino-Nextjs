@@ -1,0 +1,1 @@
+/* code for all movies to be rendered on movies page */
