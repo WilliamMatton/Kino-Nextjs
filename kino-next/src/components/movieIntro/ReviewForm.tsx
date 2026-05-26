@@ -2,9 +2,16 @@
 
 import { FC } from "react"
 
-const ReviewForm: FC = () => {
+import { createReview } from "@/lib/actions";
+
+type Props = {
+  movieID: number;
+}
+
+const ReviewForm: FC<Props> = ({ movieID }) => {
+  const postReview = createReview.bind(null, movieID);
   return (
-    <form className="movieReviewForm movieReviewListItem">
+    <form className="movieReviewForm movieReviewListItem" action={postReview}>
       <label htmlFor="reviewFormName">Namn</label>
       <input type="text" name="reviewName" id="reviewFormName" className="reviewName" required />
       <label htmlFor="reviewFormRating">Betyg (1-5)</label>
