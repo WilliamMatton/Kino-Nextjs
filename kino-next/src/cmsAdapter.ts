@@ -48,6 +48,20 @@ export async function fetchRating(id: string) {
   return sum / data.length;
 }
 
+async function fetchMovies() {
+  
+  const res = await fetch(API + '/movies');
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch movies');
+  }
+
+  const payload = await res.json();
+
+  return Array.isArray(payload.data) ? payload.data : [];
+
+}
+
 async function fetchMovie(movieID : number) {
   const res = await fetch(API + '/movies/' + movieID);
   const payload = await res.json();
@@ -81,6 +95,7 @@ async function postReview(review: { data: { author: string; rating: number; comm
 }
 
 const cmsAdapter = {
+  fetchMovies, 
   fetchMovie,
   fetchReviews,
   postReview,
