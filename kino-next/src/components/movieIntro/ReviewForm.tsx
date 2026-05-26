@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { FC } from "react"
+import { FC } from "react";
 
 import { createReview } from "@/lib/actions";
 

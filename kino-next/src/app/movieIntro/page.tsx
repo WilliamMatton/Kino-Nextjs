@@ -1,6 +1,6 @@
 import ReviewContainer from "@/components/movieIntro/ReviewContainer";
 
-import "@/styles/movieIntro.scss"
+import "@/styles/movieIntro.scss";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -12,7 +12,7 @@ export default async function Page(props: {
   const currentPage = Number(searchParams?.page) || 1;
   const movieID = Number(searchParams?.movieID);
   
-  return(
+  return (
     <ReviewContainer movieID={movieID} page={currentPage} />
   );
 }
