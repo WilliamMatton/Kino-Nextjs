@@ -19,7 +19,7 @@ const ReviewContainer: FC<Props> = async ({ movieID, page }) => {
       <h1 className="movieReviewsHeading">Recensioner</h1>
       <ReviewForm movieID={movieID} />
       <ReviewList reviews={reviews.data} />
-      <ReviewPagination />
+      <ReviewPagination page={page} maxPages={totalPages} />
     </section>
   );
 }

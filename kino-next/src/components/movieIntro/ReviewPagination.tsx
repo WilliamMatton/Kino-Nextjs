@@ -1,14 +1,32 @@
 'use client'
 
 import { FC } from "react"
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
-const ReviewPagination: FC = () => {
+type Props = {
+  page: number;
+  maxPages: number;
+}
+
+const ReviewPagination: FC<Props> = ({ page, maxPages }) => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  
   function nextPage() {
-    console.log('Next page');
+    const params = new URLSearchParams(searchParams);
+    if(page < maxPages) {
+      params.set('page', (++page).toString());
+    }
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
   function previousPage() {
-    console.log('Previous page');
+    const params = new URLSearchParams(searchParams);
+    if(page > 1) {
+      params.set('page', (--page).toString());
+    }
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
  return (
