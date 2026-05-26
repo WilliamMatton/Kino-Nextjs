@@ -9,7 +9,7 @@ type Props = {
 }
 
 const ReviewForm: FC<Props> = ({ movieID }) => {
-  const postReview = createReview.bind(null, movieID);
+  const postReview = createReview.bind(null, movieID) as (formData: FormData) => void | Promise<void>;
   return (
     <form className="movieReviewForm movieReviewListItem" action={postReview}>
       <label htmlFor="reviewFormName">Namn</label>
