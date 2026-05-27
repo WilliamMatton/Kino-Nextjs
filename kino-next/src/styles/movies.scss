@@ -14,8 +14,7 @@ h1 {
   color: #565051;
   font-size: 2.4rem;
   text-align: center;
-  letter-spacing: 0.01em;
-  padding-bottom: 3rem;
+  padding: 22px 0 44px 0;
 }
 
 .logoGlow {
@@ -31,7 +30,10 @@ h1 {
 
 .container {
   min-height: 140px;
-  background-color: #2e292a;
+  background-color: #282323;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  padding: 11px;
 }
 
 .cardsContainer {
@@ -50,6 +52,7 @@ h1 {
   max-width: 400px;
   cursor: pointer;
   overflow: hidden;
+  padding-bottom: 22px;
   margin: 0 auto;
 }
 
@@ -83,7 +86,7 @@ h1 {
 
 @media (max-width: 1080px) {
 h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .cardsContainer {
@@ -111,7 +114,7 @@ h1 {
 
 @media (max-width: 800px) {
 h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
   .cardsContainer {
@@ -134,7 +137,7 @@ h1 {
 
 @media (max-width: 480px) {
 h1 {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 }
 
