@@ -1,13 +1,7 @@
-const SCREENINGS_API = 'https://plankton-app-xhkom.ondigitalocean.app/api/screenings';
-
-export async function fetchFirstFiveScreenings(id: string) {
-  const response = await fetch(`${SCREENINGS_API}?movieId=${id}`);
-
-  const { data } = await response.json();
-  return data.slice(0, 5);
-}
+import cmsAdapter from "@/cmsAdapter";
 
 export async function GET(request: Request) {
+  try {
     const { searchParams } = new URL(request.url)
     const movieId = searchParams.get("movieId");
 
@@ -17,6 +11,11 @@ export async function GET(request: Request) {
             { status: 400 });
     }
 
-    const screenings = await fetchFirstFiveScreenings(movieId);
-  return Response.json(screenings)
+    const screenings = await cmsAdapter.fetchFirstFiveScreenings(movieId);
+    return Response.json(screenings, { status: 200 })
+  }
+  catch(error) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    return Response.json({ error: message }, { status: 500 });
+  }
 }
