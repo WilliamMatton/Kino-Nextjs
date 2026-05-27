@@ -11,18 +11,18 @@ body {
 }
 
 h1 {
-  color: #4d4748;
+  color: #565051;
   font-size: 2.4rem;
   text-align: center;
   letter-spacing: 0.01em;
 }
 
-h2 {
+/* h2 {
   color: #3d3738;
   font-size: 3rem;
   text-align: center;
   letter-spacing: 0.04em;
-}
+} */
 
 .logoGlow {
   width: min(400px, 100%);
@@ -34,3 +34,38 @@ h2 {
   width: 140px;
   height: auto;
 }
+
+.container {
+  min-height: 140px;
+  background-color: #2e292a;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding: 0;
+  letter-spacing: 0.01em;
+  justify-items: center;
+  margin: 0 auto;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.imageCard {
+  width: 100%;
+  max-width: 400px;
+  height: min(540px, 100%);
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+
+
+
