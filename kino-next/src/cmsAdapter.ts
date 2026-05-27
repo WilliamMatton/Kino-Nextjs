@@ -22,32 +22,6 @@ export async function fetchFirstFiveScreenings(id: string) {
   return data;
 }
 
-export async function fetchRating(id: string) {
-  const params = new URLSearchParams({
-    'filters[movie]': id,
-    'pagination[pageSize]': '100',
-  });
-
-  const response = await fetch(`${API}/reviews?${params.toString()}`);
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch ratings');
-  }
-
-  const { data } = await response.json();
-
-  if (!data.length) {
-    return null;
-  }
-
-  const sum = data.reduce(
-    (total: number, review: any) => total + review.attributes.rating,
-    0
-  );
-
-  return sum / data.length;
-}
-
 async function fetchMovies() {
   
   const res = await fetch(API + '/movies');
@@ -72,6 +46,35 @@ async function fetchReviews(movieID: number, page: number) {
   const res = await fetch(`${API}/reviews?filters[movie]=${movieID}&pagination[pageSize]=5&pagination[page]=${page}&sort=createdAt:desc`);
   const reviewBatch = await res.json();
   return reviewBatch;
+}
+
+async function fetchRating(id: string) {
+  const res = await fetch(`${API}/reviews?filters[movie]=${id}&pagination[pageSize]=100`);
+  const payload = await res.json();
+  const reviews = Array.isArray(payload.data) ? payload.data : [];
+
+  if (reviews.length >= 5) {
+    const sum = reviews.reduce(
+      (total: number, review: any) => total + review.attributes.rating,
+      0
+    );
+
+    return sum / reviews.length;
+  }
+
+  const omdbKey = process.env.OMDB_API_KEY;
+  const movie = await fetchMovie(Number(id));
+  const imdbID = movie?.attributes?.imdbId;
+
+  if (!omdbKey || !imdbID) {
+    return null;
+  }
+
+  const omdbRes = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${omdbKey}`);
+  const omdbPayload = await omdbRes.json();
+  const imdbRating = Number(omdbPayload.imdbRating);
+
+  return Number.isNaN(imdbRating) ? null : imdbRating;
 }
 
 async function postReview(review: { data: { author: string; rating: number; comment: string; movie: number } }) {
@@ -100,7 +103,7 @@ const cmsAdapter = {
   fetchReviews,
   postReview,
   fetchFirstFiveScreenings,
-  fetchRating
+  fetchRating,
 };
 
 export default cmsAdapter;
