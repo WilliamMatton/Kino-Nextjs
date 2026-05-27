@@ -16,8 +16,7 @@ export default function MoviesPage() {
           />
           </div>
 
-            <h1>All movies shown</h1>
-            <h2>standby. .</h2>
+            <h1>Every single movie</h1>
 
         <div id="cardsContainer"></div>
 
