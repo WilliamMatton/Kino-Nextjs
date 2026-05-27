@@ -9,14 +9,6 @@ export default function MoviesPage() {
   return (
       <main>
 
-        <div className="logoGlow">
-          <img
-            src="/images/Proxima-B.gif"
-            alt="Proxima Cinema Logo"
-            className="logoImg"
-          />
-          </div>
-
             <h1>Every single movie</h1>
 
         <MoviesList />
