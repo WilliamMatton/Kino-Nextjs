@@ -2,7 +2,7 @@
 
 body {
   min-height: 100vh;
-  font-family: Inter, Verdana;
+  font-family: Inter, sans-serif;
   font-size: 16px;
   letter-spacing: 0.01em;
   background-color: #231f20;
@@ -14,6 +14,7 @@ h1 {
   color: #565051;
   font-size: 2.4rem;
   text-align: center;
+  letter-spacing: 0.02em;
   padding: 22px 0 44px 0;
 }
 
@@ -30,11 +31,12 @@ h1 {
 
 .container {
   min-height: 140px;
-  background-color: #2d2828;
-  letter-spacing: 0.02em;
+  background-color: #2f2a2a;
+  letter-spacing: 0.01em;
   line-height: 1.4;
   padding: 11px;
   border-radius: 0 0 9px 9px;
+  box-shadow: 0 1px 4px 0 rgba(29, 29, 29, 0.2), 0 1px 9px 0 rgba(31, 30, 30, 0.3);
 }
 
 .cardsContainer {
@@ -42,7 +44,7 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
   padding: 0;
-  width: min(1900px, 100%);
+  width: min(1700px, 100%);
   letter-spacing: 0.01em;
   justify-items: center;
   margin: 0 auto;
@@ -50,7 +52,7 @@ h1 {
 
 .card {
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
   cursor: pointer;
   overflow: hidden;
   padding-bottom: 22px;
@@ -59,7 +61,7 @@ h1 {
 
 .imageCard {
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
   aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
