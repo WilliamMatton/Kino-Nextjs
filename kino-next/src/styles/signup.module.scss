@@ -1,0 +1,209 @@
+.signupMain {
+	min-height: calc(100vh - 80px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 60px 24px;
+	background: var(--bg-dark);
+}
+
+.signupCard {
+	width: min(100%, 440px);
+	padding: 40px;
+	border-radius: 18px;
+	border: 1px solid var(--border-soft);
+	background: #242424;
+	box-shadow: 0 22px 54px rgba(0, 0, 0, 0.34);
+
+	h2 {
+		margin: 0 0 8px;
+		color: var(--text-strong);
+		font-size: 28px;
+		font-weight: 700;
+		line-height: 1.1;
+	}
+
+	p {
+		margin: 0 0 20px;
+		color: var(--text-muted);
+		font-size: 15px;
+		line-height: 1.5;
+	}
+}
+
+.signupForm {
+	display: grid;
+	gap: 0.9rem;
+}
+
+.fieldGroup {
+	display: grid;
+	gap: 0.35rem;
+}
+
+.fieldLabel {
+	color: var(--text-strong);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.3;
+}
+
+.formControl {
+	width: 100%;
+	padding: 0.95rem 1rem;
+	border-radius: 12px;
+	border: 1px solid var(--border-soft);
+	background: rgba(255, 255, 255, 0.045);
+	color: var(--white);
+	font-size: 15px;
+	outline: none;
+	transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease, transform 160ms ease;
+
+	&::placeholder {
+		color: rgba(211, 210, 214, 0.72);
+		opacity: 1;
+	}
+
+	&:focus {
+		background: rgba(255, 255, 255, 0.065);
+		border-color: rgba(255, 255, 255, 0.28);
+		box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.08);
+	}
+}
+
+.buttonGroup {
+	display: grid;
+	gap: 0.75rem;
+	margin-top: 0.4rem;
+}
+
+.btnPrimary,
+.btnSecondary {
+	width: 100%;
+	padding: 0.95rem 1rem;
+	border-radius: 12px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.btnPrimary {
+	border: none;
+	background: linear-gradient(180deg, var(--white), #e2ddd9);
+	color: var(--bg-dark);
+	font-weight: 700;
+	box-shadow: 0 14px 26px rgba(0, 0, 0, 0.22);
+}
+
+.btnPrimary:hover {
+	filter: brightness(0.98);
+	transform: translateY(-1px);
+	box-shadow: 0 18px 30px rgba(0, 0, 0, 0.26);
+}
+
+.btnPrimary:active {
+	transform: translateY(0);
+}
+
+.btnSecondary {
+	border: 1px solid var(--border-soft);
+	border-radius: 12px;
+	background: transparent;
+	color: var(--text-muted);
+	font-weight: 600;
+}
+
+.btnSecondary:hover {
+	background: rgba(255, 255, 255, 0.05);
+	color: var(--white);
+	border-color: rgba(255, 255, 255, 0.18);
+	transform: translateY(-1px);
+}
+
+.btnSecondary:active {
+	transform: translateY(0);
+}
+
+.textMuted {
+	margin: 16px 0 0;
+	color: var(--text-muted);
+	font-size: 14px;
+	line-height: 1.5;
+	text-align: center;
+}
+
+.alert {
+	margin-top: 16px;
+	padding: 12px 14px;
+	border-radius: 10px;
+	font-size: 14px;
+	line-height: 1.3;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.alert::before {
+	content: '';
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+}
+
+.alertError {
+	background: rgba(255, 54, 54, 0.06);
+	border: 1px solid rgba(255, 54, 54, 0.12);
+	color: #ffb3b3;
+}
+
+.alertError::before { background: #ff6b6b; }
+
+.alertSuccess {
+	background: rgba(20, 200, 120, 0.06);
+	border: 1px solid rgba(20, 200, 120, 0.12);
+	color: #baf3d1;
+}
+
+.alertSuccess::before { background: #3ad07a; }
+
+.loginHint {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 14px;
+	line-height: 1.5;
+	text-align: center;
+}
+
+.loginSpacer {
+	height: clamp(2.5rem, 7vh, 5rem);
+}
+
+.loginLink {
+	color: var(--white);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.loginLink:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	.signupMain {
+		padding: 40px 16px;
+	}
+
+	.signupCard {
+		padding: 24px;
+		border-radius: 16px;
+	}
+
+	.signupCard h2 {
+		font-size: 24px;
+	}
+
+	.buttonGroup {
+		gap: 0.65rem;
+	}
+}
