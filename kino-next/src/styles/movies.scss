@@ -6,16 +6,17 @@ body {
   font-size: 16px;
   letter-spacing: 0.01em;
   background-color: #231f20;
-  color: #ffffff;
+  color: white;
   margin: 0 auto;
 }
 
 h1 {
-  color: #565051;
-  font-size: 2.4rem;
+  color: #dbdbdb;
+  font-size: 2.6rem;
+  font-weight: 500;
   text-align: center;
   letter-spacing: 0.02em;
-  padding: 22px 0 44px 0;
+  padding: 3px 0 44px 0;
 }
 
 .logoGlow {
@@ -31,11 +32,10 @@ h1 {
 
 .container {
   min-height: 140px;
-  background-color: #2f2a2a;
-  letter-spacing: 0.01em;
+  background-color: #494444;
   line-height: 1.4;
-  padding: 11px;
-  border-radius: 0 0 9px 9px;
+  padding: 9px 14px 14px 14px;
+  border-radius: 0 0 7px 7px;
   box-shadow: 0 1px 4px 0 rgba(29, 29, 29, 0.2), 0 1px 9px 0 rgba(31, 30, 30, 0.3);
 }
 
@@ -45,7 +45,6 @@ h1 {
   gap: 3rem;
   padding: 0;
   width: min(1700px, 100%);
-  letter-spacing: 0.01em;
   justify-items: center;
   margin: 0 auto;
 }
@@ -59,13 +58,23 @@ h1 {
   margin: 0 auto;
 }
 
+.cardTitle {
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.cardInfo {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
 .imageCard {
   width: 100%;
   max-width: 380px;
   aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
-  border-radius: 9px 9px 0 0;
+  border-radius: 7px 7px 0 0;
 }
 
 @media (max-width: 1280px) {
