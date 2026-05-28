@@ -36,7 +36,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   return (
     <article
 
-      className="card"
+      className="movieCard"
       onClick={handleClick}
       data-id={movie.id}
       data-name={title}
