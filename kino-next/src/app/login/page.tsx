@@ -21,7 +21,6 @@ export default function LoginPage() {
     const data = await res.json()
 
     if (!res.ok) {
-      // Map API status to Swedish messages and mark as error
       if (res.status === 401) {
         setMessage({ text: 'Fel lösenord', type: 'error' })
       } else if (res.status === 404) {

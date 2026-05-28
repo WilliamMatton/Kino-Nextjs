@@ -5,11 +5,9 @@ import { verifyPassword } from '../../../../../lib/hash'
 
 export async function POST(req: NextRequest) {
   try {
-    // accept either email or username in the `identifier` field
     const { email: identifier, password } = await req.json()
 
     if (!identifier || !password) {
-      // Provide specific Swedish messages for missing fields
       if (!identifier && !password) return NextResponse.json({ error: 'E-post/användarnamn och lösenord saknas' }, { status: 400 })
       if (!identifier) return NextResponse.json({ error: 'E-post eller användarnamn saknas' }, { status: 400 })
       return NextResponse.json({ error: 'Lösenord saknas' }, { status: 400 })
@@ -23,7 +21,6 @@ export async function POST(req: NextRequest) {
     const ok = await verifyPassword(user.password, password)
     if (!ok) return NextResponse.json({ error: 'Wrong password' }, { status: 401 })
 
-    // Return minimal user info (no sessions in this simple example)
     return NextResponse.json({ ok: true, user: { id: user._id, username: user.username, email: user.email } }, { status: 200 })
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'
