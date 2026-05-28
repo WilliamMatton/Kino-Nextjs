@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import cmsAdapter from "@/cmsAdapter";
 
-export async function GET(request: Request, { params }: { params: Promise<{ id: number }> }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const { id: movieID } = await params;
+    const { id } = await params;
+    const movieID = Number(id);
     const url = new URL(request.url);
     const currentPage = url.searchParams.get('page') || '1';
     const reviews = await cmsAdapter.fetchReviews(movieID, Number(currentPage));
