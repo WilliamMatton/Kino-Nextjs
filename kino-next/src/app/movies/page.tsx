@@ -7,7 +7,7 @@ export default function MoviesPage() {
   return (
       <main>
 
-            <h1>Proxima B // Filmindex</h1>
+            <h1 className="moviesHeading">Proxima B // Filmindex</h1>
 
         <MoviesList />
 
