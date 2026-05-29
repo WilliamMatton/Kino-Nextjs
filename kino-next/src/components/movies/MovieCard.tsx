@@ -34,14 +34,17 @@ export default function MovieCard({ movie }: MovieCardProps) {
   }
 
   return (
-    <article
-
-      className="movieCard"
-      onClick={handleClick}
-      data-id={movie.id}
-      data-name={title}
-      data-img={imageUrl}
-    >
+<article
+  className="movieCard"
+  onClick={handleClick}
+  role="button"
+  tabIndex={0}
+  onKeyDown={(e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      handleClick();
+    }
+  }}
+>
       {imageUrl && (
         <img src={imageUrl} alt={`Image for ${title}`} className="imageCard" />
       )}
