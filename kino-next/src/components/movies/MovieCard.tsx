@@ -49,7 +49,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <img src={imageUrl} alt={`Image for ${title}`} className="imageCard" />
       )}
 
-      <div className="container">
+      <div className="movieInfoContainer">
         <h3 className="cardTitle">{title}</h3>
         {intro && <p className="cardInfo">{intro}</p>}
       </div>
