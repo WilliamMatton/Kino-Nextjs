@@ -42,21 +42,25 @@ export default async function Home() {
     <main className={styles.wrapper}>
       <section className={styles.hero}>
         <h1>Populära filmer</h1>
-        <div className={styles.grid}>
-          {list.map(({ movie, count }) => {
-            const attrs = movie.attributes || {};
-            const title = attrs.title || attrs.name || 'Untitled';
-            const imageUrl = attrs.image?.url || attrs.image?.data?.attributes?.url || '';
-            return (
-              <article key={movie.id} className={styles.card}>
-                {imageUrl ? <img src={imageUrl} alt={title} className={styles.image} /> : null}
-                <div className={styles.content}>
-                  <h3>{title}</h3>
-                  <p>Recensioner senaste 30 dagar: {count}</p>
+        <div className={styles.container}>
+          <div className={styles.grid}>
+            {list.map(({ movie, count }) => {
+              const attrs = movie.attributes || {};
+              const title = attrs.title || attrs.name || 'Untitled';
+              const imageUrl = attrs.image?.url || attrs.image?.data?.attributes?.url || '';
+              return (
+                <div key={movie.id} className={styles.verticalCard}>
+                  <div className={styles.imageWrapper}>
+                    {imageUrl ? <img src={imageUrl} alt={title} className={styles.image} /> : null}
+                  </div>
+                  <div className={styles.content}>
+                    <h2 className={styles.movieTitle}>{title}</h2>
+                    <p className={styles.time}>Recensioner: {count}</p>
+                  </div>
                 </div>
-              </article>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
       </section>
 

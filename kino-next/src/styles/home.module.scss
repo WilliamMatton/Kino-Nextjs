@@ -115,3 +115,78 @@ $accent: #ffffff;
   margin-top: 28px;
   color: rgba(255,255,255,0.5);
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  color: $accent;
+  margin: 0 0 18px 0;
+  font-size: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.03);
+  background: transparent;
+}
+
+.verticalCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.03);
+  background: transparent;
+}
+
+.imageWrapper {
+  width: 160px;
+  flex: 0 0 160px;
+}
+
+.image {
+  width: 150px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.verticalCard .content {
+  align-items: center;
+  text-align: center;
+}
+
+.movieTitle {
+  color: $accent;
+  margin: 0;
+  font-size: 14px;
+}
+
+.time {
+  color: rgba(255,255,255,0.6);
+  margin: 6px 0 0 0;
+  font-size: 12px;
+}
