@@ -1,12 +1,18 @@
 import { FC } from "react";
 
-const Review: FC = () => {
+import type { review } from "@/types";
+
+type Props = {
+  review: review;
+}
+
+const Review: FC<Props> = ({ review }) => {
   return (
     <li className="movieReviewListItem">
-      <small className="movieReviewRating">3 av 5</small>
+      <small className="movieReviewRating">{`${review.attributes.rating} av 5`}</small>
       <div className="movieReview">
-        <p className="movieReviewComment">This is a review</p>
-        <small className="movieReviewAuthor">Author</small>
+        <p className="movieReviewComment">{review.attributes.comment}</p>
+        <small className="movieReviewAuthor">{review.attributes.author}</small>
       </div>
     </li>
   );
