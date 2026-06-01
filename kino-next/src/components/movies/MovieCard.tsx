@@ -29,7 +29,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
   function handleClick() {
 
-    router.push(`/movieIntro?id=${movie.id}&page=1`);
+    router.push(`/movieIntro/${movie.id}`);
 
   }
 
