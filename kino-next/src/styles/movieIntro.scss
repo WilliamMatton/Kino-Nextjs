@@ -41,6 +41,35 @@
   color: #f2eeee;
 }
 
+.movieIntro__screenings {
+  margin-top: 2rem;
+}
+
+.movieIntro__screenings h2 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.movieIntro__screenings ul {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.movieIntro__screenings li {
+  padding: 0.9rem 1rem;
+  border-left: 4px solid #f3c04d;
+  background-color: #302a2b;
+}
+
+.movieIntro--empty {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 760px) {
   .movieIntro {
     grid-template-columns: 1fr;

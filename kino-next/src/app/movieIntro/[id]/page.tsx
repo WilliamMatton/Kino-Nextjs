@@ -1,4 +1,6 @@
 import ReviewContainer from "@/components/movieIntro/ReviewContainer";
+import MovieIntroDetails from "@/components/movieIntro/MovieIntroDetails";
+import cmsAdapter from "@/cmsAdapter";
 
 import "@/styles/movieIntro.scss";
 
@@ -11,8 +13,20 @@ export default async function Page(props: {
 
   const movieID = Number(params.id);
   const currentPage = Number(searchParams?.page) || 1;
+  const [movie, rating, screenings] = await Promise.all([
+    cmsAdapter.fetchMovie(movieID),
+    cmsAdapter.fetchRating(params.id),
+    cmsAdapter.fetchFirstFiveScreenings(params.id),
+  ]);
 
   return (
-    <ReviewContainer movieID={movieID} page={currentPage} />
+    <>
+      <MovieIntroDetails
+        movie={movie}
+        rating={rating}
+        screenings={screenings}
+      />
+      <ReviewContainer movieID={movieID} page={currentPage} />
+    </>
   );
 }
