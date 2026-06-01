@@ -2,14 +2,20 @@ import { FC } from "react";
 
 import Review from "./Review";
 
-const ReviewList: FC = () => {
+import type { review } from "@/types";
+
+type Props = {
+  reviews: review[];
+}
+
+const ReviewList: FC<Props> = ({ reviews }) => {
   return (
     <ul className="movieReviewList">
-      <Review />
-      <Review />
-      <Review />
-      <Review />
-      <Review />
+      {reviews.map((review) => {
+        return (
+          <Review review={review} key={review.id} />
+        );
+      })}
     </ul>
   );
 }
