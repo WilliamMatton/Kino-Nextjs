@@ -1,15 +1,26 @@
 /* css for movies page */
 
+$font-main: Inter, sans-serif;
+$font-card: system-ui, sans-serif;
+
+$text-light: #dbdbdb;
+$card-bg: #393535;
+
+$card-radius: 7px;
+$card-shadow:
+  0 1px 4px 0 rgba(29, 29, 29, 0.2),
+  0 1px 9px 0 rgba(31, 30, 30, 0.3);
+
 body {
   min-height: 100vh;
-  font-family: Inter, sans-serif;
+  font-family: $font-main;
   font-size: 16px;
   letter-spacing: 0.01em;
   margin: 0 auto;
 }
 
 .moviesHeading {
-  color: #dbdbdb;
+  color: $text-light;
   font-size: 2.6rem;
   font-weight: 500;
   text-align: center;
@@ -30,12 +41,12 @@ body {
 
 .movieInfoContainer {
   min-height: 152px;
-  font-family: system-ui, sans-serif;
+  font-family: $font-card;
   background-color: #393535;
   line-height: 1.4;
   padding: 9px 14px 14px 14px;
   border-radius: 0 0 7px 7px;
-  box-shadow: 0 1px 4px 0 rgba(29, 29, 29, 0.2), 0 1px 9px 0 rgba(31, 30, 30, 0.3);
+  box-shadow: $card-shadow;
 }
 
 .cardsContainer {
@@ -55,10 +66,11 @@ body {
   overflow: hidden;
   padding-bottom: 22px;
   margin: 0 auto;
-}
+  transition: transform 0.2s ease;
 
-.movieCard:hover {
-  transform: translateY(-5px);
+  &:hover {
+    transform: translateY(-5px);
+  }
 }
 
 .cardTitle {
@@ -85,23 +97,17 @@ body {
   border-radius: 7px 7px 0 0;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1340px) {
   .cardsContainer {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    gap: 2rem;
   }
 
-  .movieCard {
-    width: 100%;
-    max-width: 300px;
-  }
-
+  .movieCard,
   .imageCard {
     width: 100%;
     max-width: 300px;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
   }
+
 }
 
 @media (max-width: 1080px) {
@@ -110,25 +116,15 @@ body {
   }
 
   .cardsContainer {
-    gap: 2rem;
-    width: min(900px, 100%);
-  }
-
-  .cardsContainer {
     grid-template-columns: repeat(2, 1fr);
+    width: min(900px, 100%);
     gap: 3rem;
   }
 
-  .movieCard {
-    width: 100%;
-    max-width: 330px;
-  }
-
+  .movieCard,
   .imageCard {
     width: 100%;
     max-width: 330px;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
   }
 }
 
@@ -142,17 +138,12 @@ body {
     gap: 4rem;
   }
 
-  .movieCard {
+  .movieCard,
+  .imageCard {
     width: 100%;
     max-width: 280px;
   }
 
-  .imageCard {
-    width: 100%;
-    max-width: 280px;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
-  }
 }
 
 @media (max-width: 480px) {
