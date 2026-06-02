@@ -27,7 +27,10 @@ describe('fetchRating()', () => {
 
     expect(fetchUrl).toContain('/reviews?');
     expect(fetchUrl).toContain('filters[movie]=1');
-    expect(result).toBe(3.2);
+    expect(result).toEqual({
+      value: 3.2,
+      source: 'reviews',
+    });
     expect(globalThis.fetch).toHaveBeenCalledTimes(1);
     expect(globalThis.fetch).toHaveBeenCalledWith(
       expect.stringContaining('filters[movie]=1')
@@ -72,7 +75,10 @@ describe('fetchRating()', () => {
 
     const result = await cmsAdapter.fetchRating('1');
 
-    expect(result).toBe(8.9);
+    expect(result).toEqual({
+      value: 8.9,
+      source: 'imdb',
+    });
     expect(globalThis.fetch).toHaveBeenCalledTimes(3);
     expect(globalThis.fetch).toHaveBeenLastCalledWith(
       'https://www.omdbapi.com/?i=tt0110912&apikey=test-key'

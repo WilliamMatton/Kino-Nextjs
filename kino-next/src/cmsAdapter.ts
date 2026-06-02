@@ -1,4 +1,5 @@
 // Lägg alla funktioner som fetchar till Richards CMS här
+import type { Rating } from "./types";
 
 const API = 'https://plankton-app-xhkom.ondigitalocean.app/api';
 
@@ -48,7 +49,7 @@ async function fetchReviews(movieID: number, page: number) {
   return reviewBatch;
 }
 
-async function fetchRating(id: string) {
+async function fetchRating(id: string): Promise<Rating | null> {
   const res = await fetch(`${API}/reviews?filters[movie]=${id}&pagination[pageSize]=100`);
   const payload = await res.json();
   const reviews = Array.isArray(payload.data) ? payload.data : [];
@@ -59,7 +60,10 @@ async function fetchRating(id: string) {
       0
     );
 
-    return sum / reviews.length;
+    return {
+      value: sum / reviews.length,
+      source: "reviews",
+    };
   }
 
   const omdbKey = process.env.OMDB_API_KEY;
@@ -74,7 +78,12 @@ async function fetchRating(id: string) {
   const omdbPayload = await omdbRes.json();
   const imdbRating = Number(omdbPayload.imdbRating);
 
-  return Number.isNaN(imdbRating) ? null : imdbRating;
+  return Number.isNaN(imdbRating)
+    ? null
+    : {
+        value: imdbRating,
+        source: "imdb",
+      };
 }
 
 async function postReview(review: { data: { author: string; rating: number; comment: string; movie: number } }) {

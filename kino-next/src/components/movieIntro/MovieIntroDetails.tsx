@@ -1,8 +1,8 @@
-import type { Movie, Screening } from "@/types";
+import type { Movie, Rating, Screening } from "@/types";
 
 type MovieIntroDetailsProps = {
   movie: Movie | null;
-  rating: number | null;
+  rating: Rating | null;
   screenings: Screening[];
 };
 
@@ -24,6 +24,9 @@ export default function MovieIntroDetails({
   const intro =
     movie?.attributes?.intro || "Ingen beskrivning finns tillgänglig.";
 
+  const ratingLabel = rating?.source === "imdb" ? "IMDB" : "Rating";
+  const ratingScale = rating?.source === "imdb" ? 10 : 5;
+
   return (
     <main className="movieIntro">
       <section className="movieIntro__media">
@@ -31,7 +34,9 @@ export default function MovieIntroDetails({
           <img src={imageUrl} alt={title} className="movieIntro__image" />
         )}
         <p className="movieIntro__rating">
-          Rating: {rating !== null ? `${rating.toFixed(1)} / 5` : "Saknas"}
+          {rating !== null
+            ? `${ratingLabel}: ${rating.value.toFixed(1)} / ${ratingScale}`
+            : "Rating: Saknas"}
         </p>
       </section>
 
