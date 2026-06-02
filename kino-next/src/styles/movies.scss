@@ -15,6 +15,11 @@ $card-shadow: 0 1px 4px 0 rgba(29, 29, 29, 0.2),
   max-width: $width;
 }
 
+$large-screen: 1280px;
+$tablet: 1080px;
+$vertical: 800px;
+$mobile: 480px;
+
 body {
   min-height: 100vh;
   font-family: $font-main;
@@ -99,7 +104,7 @@ body {
   border-radius: $card-radius $card-radius 0 0;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: $large-screen) {
   .cardsContainer {
     gap: 2rem;
   }
@@ -111,7 +116,7 @@ body {
 
 }
 
-@media (max-width: 1080px) {
+@media (max-width: $tablet) {
   h1 {
     font-size: 2rem;
   }
@@ -128,7 +133,7 @@ body {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: $vertical) {
   h1 {
     font-size: 1.8rem;
   }
@@ -145,7 +150,7 @@ body {
 
 }
 
-@media (max-width: 480px) {
+@media (max-width: $mobile) {
   h1 {
     font-size: 1.4rem;
   }
