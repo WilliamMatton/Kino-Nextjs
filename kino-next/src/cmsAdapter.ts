@@ -1,4 +1,5 @@
 // Lägg alla funktioner som fetchar till Richards CMS här
+import type { Rating } from "./types";
 
 const API = 'https://plankton-app-xhkom.ondigitalocean.app/api';
 
@@ -20,32 +21,6 @@ export async function fetchFirstFiveScreenings(id: string) {
 
   const { data } = await response.json();
   return data;
-}
-
-export async function fetchRating(id: string) {
-  const params = new URLSearchParams({
-    'filters[movie]': id,
-    'pagination[pageSize]': '100',
-  });
-
-  const response = await fetch(`${API}/reviews?${params.toString()}`);
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch ratings');
-  }
-
-  const { data } = await response.json();
-
-  if (!data.length) {
-    return null;
-  }
-
-  const sum = data.reduce(
-    (total: number, review: any) => total + review.attributes.rating,
-    0
-  );
-
-  return sum / data.length;
 }
 
 async function fetchMovies() {
@@ -74,6 +49,43 @@ async function fetchReviews(movieID: number, page: number) {
   return reviewBatch;
 }
 
+async function fetchRating(id: string): Promise<Rating | null> {
+  const res = await fetch(`${API}/reviews?filters[movie]=${id}&pagination[pageSize]=100`);
+  const payload = await res.json();
+  const reviews = Array.isArray(payload.data) ? payload.data : [];
+
+  if (reviews.length >= 5) {
+    const sum = reviews.reduce(
+      (total: number, review: any) => total + review.attributes.rating,
+      0
+    );
+
+    return {
+      value: sum / reviews.length,
+      source: "reviews",
+    };
+  }
+
+  const omdbKey = process.env.OMDB_API_KEY;
+  const movie = await fetchMovie(Number(id));
+  const imdbID = movie?.attributes?.imdbId;
+
+  if (!omdbKey || !imdbID) {
+    return null;
+  }
+
+  const omdbRes = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${omdbKey}`);
+  const omdbPayload = await omdbRes.json();
+  const imdbRating = Number(omdbPayload.imdbRating);
+
+  return Number.isNaN(imdbRating)
+    ? null
+    : {
+        value: imdbRating,
+        source: "imdb",
+      };
+}
+
 async function postReview(review: { data: { author: string; rating: number; comment: string; movie: number } }) {
   const res = await fetch(`${API}/reviews`, {
     method: 'POST',
@@ -100,7 +112,7 @@ const cmsAdapter = {
   fetchReviews,
   postReview,
   fetchFirstFiveScreenings,
-  fetchRating
+  fetchRating,
 };
 
 export default cmsAdapter;
