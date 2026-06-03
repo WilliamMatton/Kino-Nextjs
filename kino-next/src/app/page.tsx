@@ -44,7 +44,7 @@ export default async function Home() {
         <h1>Populära filmer</h1>
         <div className={styles.container}>
           <div className={styles.grid}>
-            {list.map(({ movie, count }) => {
+            {list.slice(0,5).map(({ movie, count }) => {
               const attrs = movie.attributes || {};
               const title = attrs.title || attrs.name || 'Untitled';
               const imageUrl = attrs.image?.url || attrs.image?.data?.attributes?.url || '';
