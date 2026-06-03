@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 // Mocka global fetch
 global.fetch = jest.fn() as jest.MockedFunction<typeof fetch>;
 
-describe('GET /api/screenings (Nästa 5 dagar)', () => {
+describe('GET /api/screenfilms (Nästa 5 dagar)', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     // Fixera dagens datum i testerna för stabila tidsberäkningar
@@ -73,4 +73,20 @@ describe('GET /api/screenings (Nästa 5 dagar)', () => {
     expect(response.status).toBe(500);
     expect(data).toEqual({ error: 'Internt serverfel' });
   });
+
+   it('ska hantera tomma svar från externt API utan att krascha', async () => {
+  const fetchMock = global.fetch as jest.MockedFunction<typeof fetch>;
+
+fetchMock.mockResolvedValueOnce({
+  ok: true,
+  status: 200,
+  json: async () => ({ data: [] }),
+} as unknown as Response);
+
+const response = await GET();
+    const data = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(data).toEqual([]);
+});
 });
