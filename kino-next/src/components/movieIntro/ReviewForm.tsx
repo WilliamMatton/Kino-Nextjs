@@ -62,6 +62,7 @@ const ReviewForm: FC<Props> = ({ movieID }) => {
       setRatingText('');
       setCommentText('');
       
+      params.set('page', params.get('page') || '1');
       replace(`${pathname}?${params.toString()}`, { scroll: false });
     }}>
       <label htmlFor="reviewFormName">Namn</label>
