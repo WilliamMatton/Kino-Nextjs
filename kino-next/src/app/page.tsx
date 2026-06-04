@@ -45,10 +45,12 @@ export default async function Home() {
         <h1>Populära filmer</h1>
         <div className={styles.container}>
           <div className={styles.grid}>
-            {list.slice(0,5).map(({ movie, count }) => {
+            {await Promise.all(list.slice(0,5).map(async ({ movie, count }) => {
               const attrs = movie.attributes || {};
               const title = attrs.title || attrs.name || 'Untitled';
               const imageUrl = attrs.image?.url || attrs.image?.data?.attributes?.url || '';
+              const rating = await cmsAdapter.fetchRating(String(movie.id));
+              const ratingValue = rating?.value ? Number(rating.value.toFixed(1)) : null;
               return (
                 <Link key={movie.id} href={`/movieIntro/${movie.id}`} className={styles.verticalCard}>
                   <div className={styles.imageWrapper}>
@@ -57,10 +59,11 @@ export default async function Home() {
                   <div className={styles.content}>
                     <h2 className={styles.movieTitle}>{title}</h2>
                     <p className={styles.time}>Recensioner: {count}</p>
+                    {ratingValue !== null ? <p className={styles.rating}>Betyg: {ratingValue} / 10</p> : null}
                   </div>
                 </Link>
               )
-            })}
+            }))}
           </div>
         </div>
       </section>
