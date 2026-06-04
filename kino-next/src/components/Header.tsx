@@ -11,9 +11,6 @@ export default function Header() {
       <nav className={styles.nav}>
         <a className={styles.active}>Visningar</a>
         <Link href="/movies">Filmer</Link>
-        <a>Bistro/café</a>
-        <a>Kontakta oss</a>
-        <a>Om oss</a>
       </nav>
       <div className={styles.actions}>
         <button className={styles.book}>Boka biljett</button>
