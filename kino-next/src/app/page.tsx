@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/home.module.scss'
 import Upcomingfilms from './Upcomingfilms'
 import cmsAdapter from '@/cmsAdapter'
@@ -49,7 +50,7 @@ export default async function Home() {
               const title = attrs.title || attrs.name || 'Untitled';
               const imageUrl = attrs.image?.url || attrs.image?.data?.attributes?.url || '';
               return (
-                <div key={movie.id} className={styles.verticalCard}>
+                <Link key={movie.id} href={`/movieIntro/${movie.id}`} className={styles.verticalCard}>
                   <div className={styles.imageWrapper}>
                     {imageUrl ? <img src={imageUrl} alt={title} className={styles.image} /> : null}
                   </div>
@@ -57,7 +58,7 @@ export default async function Home() {
                     <h2 className={styles.movieTitle}>{title}</h2>
                     <p className={styles.time}>Recensioner: {count}</p>
                   </div>
-                </div>
+                </Link>
               )
             })}
           </div>
