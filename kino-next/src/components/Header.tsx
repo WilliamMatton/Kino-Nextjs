@@ -16,6 +16,8 @@ export default function Header() {
         <a>Om oss</a>
       </nav>
       <div className={styles.actions}>
+        <Link href="/signup" className={styles.secondary}>Bli medlem</Link>
+        <Link href="/login" className={styles.secondary}>Logga in</Link>
         <button className={styles.book}>Boka biljett</button>
       </div>
     </header>

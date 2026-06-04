@@ -1,0 +1,37 @@
+import { NextRequest, NextResponse } from 'next/server'
+import connectToMongo from '../../../../../lib/mongo'
+import User from '../../../../../models/User'
+import { hashPassword } from '../../../../../lib/hash'
+
+export async function POST(req: NextRequest) {
+  try {
+    const { email, username, password, firstName, lastName } = await req.json()
+
+    const missing: string[] = []
+    if (!email) missing.push('E-post')
+    if (!username) missing.push('Användarnamn')
+    if (!password) missing.push('Lösenord')
+    if (!firstName) missing.push('Förnamn')
+    if (!lastName) missing.push('Efternamn')
+
+    if (missing.length > 0) {
+      if (missing.length === 1) return NextResponse.json({ error: `${missing[0]} saknas` }, { status: 400 })
+      return NextResponse.json({ error: `Följande fält saknas: ${missing.join(', ')}` }, { status: 400 })
+    }
+
+    await connectToMongo()
+
+    const exists = await User.findOne({ $or: [{ email }, { username }] })
+    if (exists) {
+      return NextResponse.json({ error: 'E-postadress eller användarnamn används redan' }, { status: 409 })
+    }
+
+    const hashed = await hashPassword(password)
+    await User.create({ email, username, password: hashed, firstName, lastName })
+
+    return NextResponse.json({ ok: true }, { status: 201 })
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error'
+    return NextResponse.json({ error: message }, { status: 500 })
+  }
+}

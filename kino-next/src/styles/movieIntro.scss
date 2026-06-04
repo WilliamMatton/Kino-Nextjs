@@ -1,39 +1,78 @@
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.movieIntro {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) minmax(0, 640px);
+  gap: 2.5rem;
+  align-items: start;
+  justify-content: center;
+  padding: 4rem 1.5rem 2rem;
 }
 
-.movie-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
+.movieIntro__media {
+  width: 100%;
 }
-.movieImg {
-    width: 100%;        
-    max-width: 400px;
-    height: auto; 
-    border-radius: 8px;
-    margin-bottom: 1rem;
+
+.movieIntro__image {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
 }
-.movieIntro {
+
+.movieIntro__rating {
+  margin: 1rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f3c04d;
+}
+
+.movieIntro__content h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1;
+  color: #ff3333;
+}
+
+.movieIntro__content p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #f2eeee;
+}
+
+.movieIntro__screenings {
   margin-top: 2rem;
-  max-width: 600px;
-  margin-bottom: 2rem;
 }
-.movieTitle {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+
+.movieIntro__screenings h2 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.movieIntro__screenings ul {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.movieIntro__screenings li {
+  padding: 0.9rem 1rem;
+  border-left: 4px solid #f3c04d;
+  background-color: #302a2b;
+}
+
+.movieIntro--empty {
+  display: flex;
+  align-items: center;
 }
 
 .movieReviews {
-  align-self: center;
   background-color: #3a3a3a;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   max-width: 1000px;
   padding: 1rem;
   width: 80%;
@@ -78,7 +117,8 @@ body {
   justify-content: space-between;
 }
 
-.previousReviewPageBtn, .nextReviewPageBtn {
+.previousReviewPageBtn,
+.nextReviewPageBtn {
   background: none;
   border: none;
   color: #a9a9fc;
@@ -129,18 +169,13 @@ body {
   min-height: 1.2rem;
 }
 
-.movieDateAndTimeSection {
-  width: 100%;
-}
+@media (max-width: 760px) {
+  .movieIntro {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
 
-.movieDateAndTimeWrap {
-  width: 12em;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.movieDateAndTime {
-  padding: .4em 0 .9em 0;
-  font-size: 1.1em;
-  color: silver;
+  .movieIntro__media {
+    max-width: 340px;
+  }
 }
