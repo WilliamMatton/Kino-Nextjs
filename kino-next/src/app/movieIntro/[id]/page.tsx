@@ -1,6 +1,6 @@
 import cmsAdapter from '@/cmsAdapter'
 import ReviewContainer from '@/components/movieIntro/ReviewContainer'
-import styles from '@/styles/movieIntro.module.scss'
+import '@/styles/movieIntro.scss'
 
 type Props = {
   params: { id: string }
@@ -21,11 +21,11 @@ export default async function MoviePage({ params }: Props) {
   const imageUrl = attrs.image?.url || attrs.image?.data?.attributes?.url || ''
 
   return (
-    <main className={styles.movieIntroPage}>
-      <section className={styles.movieHeader}>
-        {imageUrl ? <img src={imageUrl} alt={title} className={styles.moviePoster} /> : null}
-        <div className={styles.movieMeta}>
-          <h1>{title}</h1>
+    <main className="movieIntro">
+      <section className="movie-intro">
+        {imageUrl ? <img src={imageUrl} alt={title} className="movieImg" /> : null}
+        <div className="movieIntro">
+          <h1 className="movieTitle">{title}</h1>
           <p>{attrs.description || ''}</p>
         </div>
       </section>
