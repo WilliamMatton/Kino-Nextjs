@@ -1,17 +1,78 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/home.module.scss'
 import Upcomingfilms from './Upcomingfilms'
+import cmsAdapter from '@/cmsAdapter'
 
-export default function Home() {
+async function getMoviesWithRecentReviewCounts() {
+  const movies = await cmsAdapter.fetchMovies();
+  const fromDate = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  const results = [];
+  for (const m of movies) {
+    const movieId = m.id ?? m.attributes?.id;
+    if (!movieId) continue;
+    let page = 1;
+    let count = 0;
+    while (true) {
+      const batch = await cmsAdapter.fetchReviews(Number(movieId), page);
+      const data = batch?.data ?? [];
+      if (!data.length) break;
+      let allOlder = true;
+      for (const r of data) {
+        const created = r.attributes?.createdAt ?? r.attributes?.created_at ?? r.attributes?.created;
+        if (!created) continue;
+        const d = new Date(created);
+        if (isNaN(d.getTime())) continue;
+        if (d >= fromDate) {
+          allOlder = false;
+          count++;
+        }
+      }
+      if (allOlder) break;
+      page++;
+    }
+    results.push({ movie: m, count });
+  }
+  results.sort((a, b) => b.count - a.count);
+  return results;
+}
+
+export default async function Home() {
+  const list = await getMoviesWithRecentReviewCounts();
   return (
     <main className={styles.wrapper}>
       <section className={styles.hero}>
         <h1>Populära filmer</h1>
+        <div className={styles.container}>
+          <div className={styles.grid}>
+            {await Promise.all(list.slice(0,5).map(async ({ movie, count }) => {
+              const attrs = movie.attributes || {};
+              const title = attrs.title || attrs.name || 'Untitled';
+              const imageUrl = attrs.image?.url || attrs.image?.data?.attributes?.url || '';
+              const rating = await cmsAdapter.fetchRating(String(movie.id));
+              const ratingValue = rating?.value ? Number(rating.value.toFixed(1)) : null;
+              return (
+                <Link key={movie.id} href={`/movieIntro/${movie.id}`} className={styles.verticalCard}>
+                  <div className={styles.imageWrapper}>
+                    {imageUrl ? <img src={imageUrl} alt={title} className={styles.image} /> : null}
+                  </div>
+                  <div className={styles.content}>
+                    <h2 className={styles.movieTitle}>{title}</h2>
+                    <p className={styles.time}>Recensioner: {count}</p>
+                    {ratingValue !== null ? <p className={styles.rating}>Betyg: {ratingValue} / 10</p> : null}
+                  </div>
+                </Link>
+              )
+            }))}
+          </div>
+        </div>
       </section>
 
       <section className={styles.upcoming}>
         <Upcomingfilms />
       </section>
+
+      
     </main>
   )
 }
