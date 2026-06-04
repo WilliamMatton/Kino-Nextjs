@@ -15,20 +15,18 @@ export default async function Page(props: {
   const currentPage = Number(searchParams?.page) || 1;
   const [movie, rating, screenings] = await Promise.all([
     cmsAdapter.fetchMovie(movieID),
-    // cmsAdapter.fetchRating expects a number or string depending on implementation
-    // falling back to 0 if the adapter doesn't expose the function.
     (cmsAdapter as any).fetchRating ? (cmsAdapter as any).fetchRating(movieID) : Promise.resolve(null),
     (cmsAdapter as any).fetchFirstFiveScreenings ? (cmsAdapter as any).fetchFirstFiveScreenings(movieID) : Promise.resolve([]),
   ]);
 
-  return (
-    <>
-      <MovieIntroDetails
-        movie={movie}
-        rating={rating}
-        screenings={screenings}
-      />
-      <ReviewContainer movieID={movieID} page={currentPage} />
-    </>
-  );
+    return (
+      <>
+        <MovieIntroDetails
+          movie={movie}
+          rating={rating}
+          screenings={screenings}
+        />
+        <ReviewContainer movieID={movieID} page={currentPage} />
+      </>
+    );
 }
